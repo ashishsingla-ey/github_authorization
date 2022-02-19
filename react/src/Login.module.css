@@ -1,0 +1,17 @@
+.container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(https://previews.123rf.com/images/ipopba/ipopba1908/ipopba190800075/128384873-cybersecurity-sulla-rete-globale-servizi-di-sicurezza-informatica-su-internet-.jpg);
+  }
+  
+.btn {
+    padding: 12px 20px;
+    border-radius: 6px;
+    border: none;
+    color: #fff;
+    background: #4caf50;
+    font-size: 16px;
+    cursor: pointer;
+  }
