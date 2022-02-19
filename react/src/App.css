@@ -1,3 +1,17 @@
 .App {
   text-align: center;
 }
+
+.container {
+  padding: 20px;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.top-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

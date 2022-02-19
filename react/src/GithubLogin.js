@@ -1,3 +1,6 @@
+import { Button } from "@mui/material";
+import GitHubIcon from '@mui/icons-material/GitHub';
+
 function GithubLogin(props) {
 
     const handleClick = (e) => {
@@ -5,7 +8,7 @@ function GithubLogin(props) {
     }
 
     return (
-        <button className={props.styles.btn} onClick={handleClick}>SIGN IN WITH GITHUB</button>
+        <Button color="success" variant="contained" onClick={handleClick}><GitHubIcon sx={{ fontSize: 20 }}/>&nbsp;&nbsp;SIGN IN WITH GITHUB</Button>
     );
 }
 
