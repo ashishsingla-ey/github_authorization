@@ -8,7 +8,6 @@ import { Button } from "@mui/material";
 function Home(props) {
     const navigate  = useNavigate();
     const [myRepos, setMyRepos] = useState([]);
-    const githubAPI = new GitHubAPI();
     const service = new Service();
     const handleAction = (e) => {
         const {name, owner: {login}} = e;
@@ -34,19 +33,19 @@ function Home(props) {
     ]
 
     useEffect(()=>{
+        async function getGithubRepo() {
+            const githubAPI = new GitHubAPI();
+            try {
+                const {data} = await githubAPI.fetchRepos();
+                setMyRepos(data);
+            } catch(e) {
+                console.log(e.message);
+                e.status === 401 && service.logout();
+                setMyRepos([]);
+            }
+        }
         getGithubRepo();
     }, []);
-
-    async function getGithubRepo() {
-        try {
-            const {data} = await githubAPI.fetchRepos();
-            setMyRepos(data);
-        } catch(e) {
-            console.log(e.message);
-            e.status === 401 && service.logout();
-            setMyRepos([]);
-        }
-    }
 
     return (
         <div className="container">

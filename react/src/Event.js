@@ -9,9 +9,7 @@ import { Button } from "@mui/material";
 function Events(props) {
     const { owner, repo } = useParams();
     const [events, setEvents] = useState([]);
-    const githubAPI = new GitHubAPI();
     const service = new Service();
-
     const columns = [{
             id: 'id',
             label: 'Id'
@@ -25,20 +23,19 @@ function Events(props) {
     ];
 
     useEffect(()=>{
-        init();
-    }, [owner, repo]);
-
-    async function init() {
-        try {
-            const {data} = await githubAPI.fetchNetworkEventsByRepo(owner, repo);
-            console.log(data);
-            setEvents(data);
-        } catch(e) {
-            console.log(e.message);
-            e.status === 401 && service.logout();
-            setEvents([]);
+        async function fetchData() {
+            const githubAPI = new GitHubAPI();
+            try {
+                const {data} = await githubAPI.fetchNetworkEventsByRepo(owner, repo);
+                setEvents(data);
+            } catch(e) {
+                console.log(e.message);
+                e.status === 401 && service.logout();
+                setEvents([]);
+            }
         }
-    }
+        fetchData();
+    }, [owner, repo]);
 
     return (
         <div className="container">
